@@ -52,8 +52,8 @@ class KitNET:
     #force train KitNET on x
     #returns the anomaly score of x during training (do not use for alerting)
     def train(self,x,X):
-#        if self.n_trained < self.FM_grace_period and self.v is None: #If the FM is in train-mode, and the user has not supplied a feature mapping
-#            self.CC.update(x)
+
+# 85%*25% of normal samples are extracted and the average values of each feature are calculated to get the samples to be clustered.
         if self.n_trained == self.FM_grace_period: #If the feature mapping should be instantiated
             self.v = CC.cluster(X[0:self.FM_grace_period-1])
             self.__createAD__()
@@ -96,3 +96,5 @@ class KitNET:
         # construct output layer
         params = AE.dA_params(len(self.v), n_hidden=0, lr=self.lr, corruption_level=0, gracePeriod=0, hiddenRatio=self.hr)
         self.outputLayer = AE.dA(params)
+        
+ # Copyright (c) 2017 Yisroel Mirsky
