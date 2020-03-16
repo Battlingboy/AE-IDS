@@ -1,12 +1,13 @@
+#Feature Grouping
 from sklearn.cluster import AffinityPropagation
 import numpy as np
 import time
-#class corClust1:
+
 
 def cluster(A):
     start = time.time()
     A = A.T
-    A = np.mean(A,axis=1)
+    A = np.mean(A,axis=1)#The Average Value of Features
     clustering = AffinityPropagation(max_iter=1000).fit(A.reshape(-1,1))#max_iter=300
     labels = list(clustering.labels_)
     size1 = list(set(labels))
