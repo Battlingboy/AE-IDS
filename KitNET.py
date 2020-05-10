@@ -67,7 +67,7 @@ class KitNET:
                 xi = x[self.v[a]]
                 S_l1[a] = self.ensembleLayer[a].train(xi)
             ## OutputLayer
-            self.outputLayer.train(S_l1)
+            self.outputLayer.train(S_l1) # or self.outputLayer = np.mean(S_l1)
             if self.n_trained == self.AD_grace_period+self.FM_grace_period:
                 print("Feature-Mapper: execute-mode, Anomaly-Detector: exeute-mode")
         self.n_trained += 1
@@ -85,7 +85,7 @@ class KitNET:
                 xi = x[self.v[a]]
                 S_l1[a] = self.ensembleLayer[a].execute(xi)
             ## OutputLayer
-            return self.outputLayer.execute(S_l1)
+            return self.outputLayer.execute(S_l1) #or return np.mean(S_l1)
 
     def __createAD__(self):
         # construct ensemble layer
